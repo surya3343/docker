@@ -9,6 +9,7 @@ pipeline {
     environment {
         REGISTRY = 'us.gcr.io/surya-wordpress'
         IMAGE = 'us.gcr.io/surya-wordpress/java'
+        IMG_VERSION= '1.1' 
     }
     stages {
         stage('Determine version') {
