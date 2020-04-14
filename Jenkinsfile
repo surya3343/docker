@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'master'
+        label 'general'
     }
     options {
         buildDiscarder(logRotator(numToKeepStr: '10'))
@@ -19,18 +19,19 @@ pipeline {
                         imageRepo = env.REGISTRY
                         imageName = env.IMAGE
                         imageVersion = "master"
+                        print ${imageVersion}
                     } else if (env.BRANCH_NAME ==~ /PR-[0-9]+/) {
                         imageRepo = env.REGISTRY
                         imageName = env.IMAGE
                         imageVersion = env.IMG_VERSION
+                        print ${imageVersion}
                     }
                 }
             }
         }
-        
         stage('Build image') {
             steps {
-                sh("VERSION=${imageVersion} make container")
+                sh("docker build ${imageName}:${imageVersion}")
             }
         }
         stage('Push image') {
@@ -38,7 +39,7 @@ pipeline {
                 timeout(time: 10, unit: 'MINUTES')
             }
             steps {
-                withCredentials([file(credentialsId: 'searce-playground', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                withCredentials([file(credentialsId: '	searce-playground', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                     sh("docker push ${imageName}:${imageVersion}")
                 }
             }
