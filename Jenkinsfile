@@ -14,11 +14,16 @@ pipeline {
         stage('Determine version') {
             steps {
                 script {
-                    (env.BRANCH_NAME == "master") {
+                    if (env.BRANCH_NAME == "master") {
                         imageRepo = env.REGISTRY
                         imageName = env.IMAGE
                         imageVersion = "master"
-                    } 
+                    }  
+                    else if (env.BRANCH_NAME ==~ /PR-[0-9]+/) {
+                        imageRepo = env.REGISTRY
+                        imageName = env.IMAGE
+                        imageVersion = "${env.GIT_COMMIT[0..6]}"
+                    }
                 }
             }
         }
