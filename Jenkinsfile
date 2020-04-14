@@ -7,8 +7,8 @@ pipeline {
         disableConcurrentBuilds()
     }
     environment {
-        REGISTRY = 'gcr.io/surya-wordpress'
-        IMAGE = 'gcr.io/surya-wordpress/java'
+        REGISTRY = 'us.gcr.io/surya-wordpress'
+        IMAGE = 'us.gcr.io/surya-wordpress/java'
     }
     stages {
         stage('Determine version') {
