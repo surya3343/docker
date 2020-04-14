@@ -21,7 +21,7 @@ pipeline {
                     } else if (env.BRANCH_NAME ==~ /PR-[0-9]+/) {
                         imageRepo = env.REGISTRY
                         imageName = env.IMAGE
-                        imageVersion = "master"
+                        imageVersion = env.IMG_VERSION
                     }
                 }
             }
