@@ -14,7 +14,7 @@ pipeline {
                 }
         }
         stage ('Push image') {
-            step {
+            steps {
                 script {
                     docker.withRegistry('https://us.gcr.io', 'gcr:searce-playground') {
                         dockerImage.push()
