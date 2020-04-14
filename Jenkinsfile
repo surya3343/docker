@@ -15,10 +15,12 @@ pipeline {
         }
         stage ('Push image') {
             step {
-                docker.withRegistry('https://us.gcr.io', 'gcr:searce-playground') {
-                app.push("${env.BUILD_NUMBER}")
-                app.push("latest")
+                script {
+                    docker.withRegistry('https://us.gcr.io', 'gcr:searce-playground') {
+                        dockerImage.push()
+                    }
                 }
+                
             }
         }
     }
