@@ -9,7 +9,7 @@ pipeline {
     environment {
         REGISTRY = 'us.gcr.io/surya-wordpress'
         IMAGE = 'us.gcr.io/surya-wordpress/java'
-        IMG_VERSION= '1.1' 
+
     }
     stages {
         stage('Determine version') {
@@ -18,13 +18,11 @@ pipeline {
                     if (env.BRANCH_NAME == "master") {
                         imageRepo = env.REGISTRY
                         imageName = env.IMAGE
-                        imageVersion = "master"
-                        print ${imageVersion}
+
                     } else if (env.BRANCH_NAME ==~ /PR-[0-9]+/) {
                         imageRepo = env.REGISTRY
                         imageName = env.IMAGE
-                        imageVersion = env.IMG_VERSION
-                        print ${imageVersion}
+
                     }
                 }
             }
