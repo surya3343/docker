@@ -11,7 +11,7 @@ pipeline {
         stage ('Build image') {
             steps {
                 script{
-                docker.build("searce-playground/surya-wordpress")
+                Image = docker.build("searce-playground/surya-wordpress")
                 }
             }
         }
@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://us.gcr.io', 'gcr:searce-playground') {
-                        docker.push()
+                        Image.push()
                     }
                 }
                 
