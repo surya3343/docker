@@ -10,8 +10,10 @@ pipeline {
     stages {
         stage ('Build image') {
             steps {
+                script{
                 docker.build("searce-playground/surya-wordpress")
                 }
+            }
         }
         stage ('Push image') {
             steps {
