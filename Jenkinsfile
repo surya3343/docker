@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Build image') {
             steps {
-                sh("docker build ${imageName}:${imageVersion}")
+                sh("docker build ${imageName}")
             }
         }
         stage('Push image') {
@@ -40,7 +40,7 @@ pipeline {
             }
             steps {
                 withCredentials([file(credentialsId: '	searce-playground', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
-                    sh("docker push ${imageName}:${imageVersion}")
+                    sh("docker push ${imageName}")
                 }
             }
         }
