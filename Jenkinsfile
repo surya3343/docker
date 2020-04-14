@@ -37,7 +37,7 @@ pipeline {
                 timeout(time: 10, unit: 'MINUTES')
             }
             steps {
-                withCredentials([file(credentialsId: 'heptio-images-gcr', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                withCredentials([file(credentialsId: 'searce-playground', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                     sh("docker push ${imageName}:${imageVersion}")
                 }
             }
