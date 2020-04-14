@@ -8,13 +8,17 @@ pipeline {
     }
     
     stages {
-        step('Build image') {
+        stage('Build image') {
+            step{
             app = docker.build("searce-playground/surya-wordpress")
+            }
 }
-        step('Push image') {
+        stage('Push image') {
+            step{
             docker.withRegistry('https://us.gcr.io', 'gcr:searce-playground') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
+            }
   }
         }
 
