@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage ('Build image') {
             steps {
-                app = docker.build("searce-playground/surya-wordpress")
+                docker.build("searce-playground/surya-wordpress")
                 }
         }
         stage ('Push image') {
