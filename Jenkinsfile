@@ -1,7 +1,4 @@
 pipeline {
-    agent {
-        label 'jenkins'
-    }
     options {
         buildDiscarder(logRotator(numToKeepStr: '10'))
         disableConcurrentBuilds()
