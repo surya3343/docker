@@ -30,7 +30,7 @@ pipeline {
         
         stage('Build image') {
             steps {
-                sh("cd discovery && VERSION=${imageVersion} make container")
+                sh("VERSION=${imageVersion} make container")
             }
         }
         stage('Push image') {
