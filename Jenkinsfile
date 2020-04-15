@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://us.gcr.io', 'gcr:searce-playground') {
-                        Image.push('4.0')
+                        Image.push('${BUILD_NUMBER}')
                     }
                 }
                 
