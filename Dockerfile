@@ -1,5 +1,3 @@
-FROM java:8  
-COPY . /var/www/java  
-WORKDIR /var/www/java  
-RUN javac hello.java  
-CMD ["java", "hello"]
+FROM httpd:2.4  
+COPY . /usr/local/apache2/htdocs/
+
