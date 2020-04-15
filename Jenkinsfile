@@ -6,6 +6,11 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10'))
         disableConcurrentBuilds()
     }
+
+    environment {
+        tag = '${BUILD_NUMBER}'
+
+    }
     
     stages {
         stage ('Build image') {
@@ -19,7 +24,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://us.gcr.io', 'gcr:searce-playground') {
-                        Image.push('${BUILD_NUMBER}')
+                        Image.push(tag)
                     }
                 }
                 
