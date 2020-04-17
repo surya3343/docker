@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: java-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deploy: example
+  template:
+    metadata:
+      labels:
+        deploy: example
+    spec:
+      containers:
+        - image: 'us.gcr.io/searce-playground/surya-wordpress:${trigger[''tag'']}'
+          name: java
+          ports:
+            - containerPort: 80
