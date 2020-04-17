@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'jenkins-slave'
+        label 'master'
     }
     options {
         buildDiscarder(logRotator(numToKeepStr: '10'))
